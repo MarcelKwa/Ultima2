@@ -1,0 +1,6 @@
+{
+  "name": "ultima-website",
+  "private": true,
+  "type": "module",
+  "description": "Statische Ultima-website met een Vercel serverless function voor het contactformulier (verstuurt e-mail via Resend)."
+}

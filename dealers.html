@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vind een dealer — Ultima</title>
+<meta name="description" content="Ultima is verkrijgbaar bij geselecteerde dealers in Nederland, België en Duitsland. Zoek een dealer bij jou in de buurt en ervaar Ultima zelf.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="index.html" class="logo"><img src="assets/ultima-logo.png" alt="Ultima — Het bed dat bij je past"></a>
+    <nav class="nav" id="nav">
+      <ul class="nav__list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="over-ons.html">Over Ultima</a></li>
+        <li class="nav__item nav__item--dropdown">
+          <a href="producten.html">Producten <span class="nav__caret" aria-hidden="true">▾</span></a>
+          <ul class="nav__dropdown">
+            <li><a href="boxsprings.html">Boxsprings</a></li>
+            <li><a href="matrassen.html">Matrassen</a></li>
+            <li><a href="topmatrassen.html">Topmatrassen</a></li>
+            <li><a href="ledikanten.html">Ledikanten</a></li>
+            <li><a href="kussens.html">Kussens</a></li>
+          </ul>
+        </li>
+        <li><a href="dealers.html" aria-current="page">Dealers</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a href="dealers.html" class="btn btn--outline nav__cta">Vind een dealer</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Menu openen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow" style="color:#FFC9A0;">Dealers</p>
+      <h1>Ervaar Ultima bij een dealer bij jou in de buurt.</h1>
+      <p class="lead">Ultima verkoopt niet rechtstreeks online. Onze producten zijn te bekijken, te testen en te bestellen bij zorgvuldig geselecteerde slaapspecialisten in Nederland, België en Duitsland.</p>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+
+      <div class="notice-banner">
+        Van een deel van onze dealers hebben we nog geen e-mailadres paraat — dat vullen we zo snel mogelijk aan. Ontbreekt de juiste locatie of klopt er iets niet? Laat het ons weten via <a href="contact.html">het contactformulier</a>.
+      </div>
+
+      <div id="dealer-map" class="dealer-map" data-dealer-map role="application" aria-label="Kaart met Ultima-dealers"></div>
+
+      <div class="dealer-tools">
+        <input type="text" data-dealer-search placeholder="Zoek op plaats of dealernaam…" aria-label="Zoek een dealer">
+        <select data-dealer-country aria-label="Filter op land">
+          <option value="all">Alle landen</option>
+          <option value="nl">Nederland</option>
+          <option value="be">België</option>
+          <option value="de">Duitsland</option>
+        </select>
+        <button type="button" class="btn btn--outline" data-dealer-locate>Dealer bij mij in de buurt</button>
+        <p class="dealer-locate-status" data-dealer-locate-status></p>
+      </div>
+
+      <p class="dealer-search-status" data-dealer-search-status></p>
+
+      <div class="dealer-list" data-dealer-list>
+
+        <article class="dealer-card" data-country="de" data-city="Ahaus" data-name="Bettenstudio Elmar" data-lat="52.092" data-lng="6.9739">
+          <span class="badge">Duitsland</span>
+          <h3>Bettenstudio Elmar</h3>
+          <p class="dealer-address">Von-Braun-Straße 23-25, 48683 Ahaus</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Alkmaar-Overstad" data-name="Borst Bedden" data-lat="52.6317" data-lng="4.7486">
+          <span class="badge">Nederland</span>
+          <h3>Borst Bedden</h3>
+          <p class="dealer-address">Koedijkerstraat 28, 1823 CR Alkmaar-Overstad</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Almere" data-name="Beter Interieur" data-lat="52.3703" data-lng="5.2141">
+          <span class="badge">Nederland</span>
+          <h3>Beter Interieur</h3>
+          <p class="dealer-address">Zoetelaarpassage 46, 1315 AZ Almere</p>
+          <p class="dealer-meta"><a href="mailto:info@beterinterieur.nl">info@beterinterieur.nl</a></p>
+        </article>
+
+        <article class="dealer-card" data-country="be" data-city="Antwerpen" data-name="Sit &amp; Sleep Antwerpen" data-lat="51.2167" data-lng="4.4167">
+          <span class="badge">België</span>
+          <h3>Sit &amp; Sleep Antwerpen</h3>
+          <p class="dealer-address">Ernest Van Dijckkaai 1, 2000 Antwerpen</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Assen" data-name="Snurky" data-lat="52.9967" data-lng="6.5625">
+          <span class="badge">Nederland</span>
+          <h3>Snurky</h3>
+          <p class="dealer-address">Pottenbakkerstraat 28, 9403 VX Assen</p>
+        </article>
+
+        <article class="dealer-card" data-country="be" data-city="Beernem" data-name="Slaapstudio Vic" data-lat="51.15" data-lng="3.3333">
+          <span class="badge">België</span>
+          <h3>Slaapstudio Vic</h3>
+          <p class="dealer-address">Bloemendalestraat 28A, 8730 Beernem</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Bergambacht" data-name="Soet Wonen" data-lat="51.9342" data-lng="4.7861">
+          <span class="badge">Nederland</span>
+          <h3>Soet Wonen</h3>
+          <p class="dealer-address">Hoofdstraat 11-13, 2861 AK Bergambacht</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Bergeijk" data-name="VOL boxsprings" data-lat="51.3192" data-lng="5.3583">
+          <span class="badge">Nederland</span>
+          <h3>VOL boxsprings</h3>
+          <p class="dealer-address">Hof 51, 5571 CB Bergeijk</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Bergschenhoek" data-name="Frans Mets / De Bedderij" data-lat="51.99" data-lng="4.4986">
+          <span class="badge">Nederland</span>
+          <h3>Frans Mets / De Bedderij</h3>
+          <p class="dealer-address">Bergweg Zuid 140, 2661 CW Bergschenhoek</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Bussum" data-name="Sleepwell dé Slaapspecialist" data-lat="52.2733" data-lng="5.1611">
+          <span class="badge">Nederland</span>
+          <h3>Sleepwell dé Slaapspecialist</h3>
+          <p class="dealer-address">Brinklaan 79, 1404 GA Bussum</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Den Haag" data-name="Engering Slaapcomfort" data-lat="52.0883" data-lng="4.2846">
+          <span class="badge">Nederland</span>
+          <h3>Engering Slaapcomfort</h3>
+          <p class="dealer-address">Frederik Hendriklaan 119e, 2582 BX Den Haag</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Dordrecht" data-name="Slaapspecialist Hendriksen" data-lat="51.81" data-lng="4.6736">
+          <span class="badge">Nederland</span>
+          <h3>Slaapspecialist Hendriksen</h3>
+          <p class="dealer-address">Toulonselaan 69, 3311 LT Dordrecht</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Drempt" data-name="Drempt  Slaapspecialist" data-lat="52.0075" data-lng="6.175">
+          <span class="badge">Nederland</span>
+          <h3>Drempt  Slaapspecialist</h3>
+          <p class="dealer-address">Rijksweg 20, 6996 AC Drempt</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Druten" data-name="Beddenspecialist De Vries Druten" data-lat="51.8883" data-lng="5.6056">
+          <span class="badge">Nederland</span>
+          <h3>Beddenspecialist De Vries Druten</h3>
+          <p class="dealer-address">Markt 1c, 6651 BC Druten</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Ede" data-name="Bedding Slaapcomfort" data-lat="52.0333" data-lng="5.6583">
+          <span class="badge">Nederland</span>
+          <h3>Bedding Slaapcomfort</h3>
+          <p class="dealer-address">Arnhemseweg 5, 6711 GP Ede</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Emmeloord" data-name="Beddenspecialist Huisman Emmeloord" data-lat="52.7108" data-lng="5.7486">
+          <span class="badge">Nederland</span>
+          <h3>Beddenspecialist Huisman Emmeloord</h3>
+          <p class="dealer-address">Penning 2, 8305 BH Emmeloord</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Enschede" data-name="Richter Slaapcomfort" data-lat="52.2183" data-lng="6.8958">
+          <span class="badge">Nederland</span>
+          <h3>Richter Slaapcomfort</h3>
+          <p class="dealer-address">Kuipersdijk 71, 7500 AS Enschede</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Geleen" data-name="Hydrosfeer Waterbedden" data-lat="50.9742" data-lng="5.8292">
+          <span class="badge">Nederland</span>
+          <h3>Hydrosfeer Waterbedden</h3>
+          <p class="dealer-address">Rijksweg Zuid 78, 6161BP Geleen</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Gemert" data-name="Wolk slaapstudio" data-lat="51.5558" data-lng="5.6903">
+          <span class="badge">Nederland</span>
+          <h3>Wolk slaapstudio</h3>
+          <p class="dealer-address">Kruiseind 51a, 5421 NB Gemert</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="HARDERWIJK" data-name="Slaaphof" data-lat="52.3417" data-lng="5.6208">
+          <span class="badge">Nederland</span>
+          <h3>Slaaphof</h3>
+          <p class="dealer-address">Deventerweg 2, 3843 GD HARDERWIJK</p>
+        </article>
+
+        <article class="dealer-card" data-country="be" data-city="Harelbeke" data-name="Ergodome" data-lat="50.85" data-lng="3.3">
+          <span class="badge">België</span>
+          <h3>Ergodome</h3>
+          <p class="dealer-address">Kortrijksesteenweg 395, 8530 Harelbeke</p>
+        </article>
+
+        <article class="dealer-card" data-country="be" data-city="Hasselt" data-name="Sit &amp; Sleep Hasselt" data-lat="50.9333" data-lng="5.3333">
+          <span class="badge">België</span>
+          <h3>Sit &amp; Sleep Hasselt</h3>
+          <p class="dealer-address">Genkersteenweg 299, 3500 Hasselt</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Heinenoord" data-name="Slaapboulevard Kwakernaat" data-lat="51.826" data-lng="4.4766">
+          <span class="badge">Nederland</span>
+          <h3>Slaapboulevard Kwakernaat</h3>
+          <p class="dealer-address">Boonsweg 7, 3274 LH Heinenoord</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Hengelo" data-name="&#x27;t Huys" data-lat="52.2658" data-lng="6.7931">
+          <span class="badge">Nederland</span>
+          <h3>&#x27;t Huys</h3>
+          <p class="dealer-address">Oldenzaalsestraat 188, 7557 GB Hengelo</p>
+          <p class="dealer-meta"><a href="mailto:info@thuys.design">info@thuys.design</a></p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Houten" data-name="Slaapspecialist Jongerius" data-lat="52.0283" data-lng="5.1681">
+          <span class="badge">Nederland</span>
+          <h3>Slaapspecialist Jongerius</h3>
+          <p class="dealer-address">Plein 5, 3991 DK Houten</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Kootwijkerbroek" data-name="Beddenspecialist van Veldhuizen" data-lat="52.1508" data-lng="5.6694">
+          <span class="badge">Nederland</span>
+          <h3>Beddenspecialist van Veldhuizen</h3>
+          <p class="dealer-address">Garderbroekerweg 146, 3774 JH Kootwijkerbroek</p>
+        </article>
+
+        <article class="dealer-card" data-country="be" data-city="Korbeek-Lo" data-name="Sit &amp; Sleep Leuven" data-lat="50.8333" data-lng="4.7667">
+          <span class="badge">België</span>
+          <h3>Sit &amp; Sleep Leuven</h3>
+          <p class="dealer-address">Tiensesteenweg 69, 3360 Korbeek-Lo</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Leeuwarden" data-name="Wielinga &amp; Tabbers" data-lat="53.2" data-lng="5.7833">
+          <span class="badge">Nederland</span>
+          <h3>Wielinga &amp; Tabbers</h3>
+          <p class="dealer-address">Zuiderplein 7, 8911 AM Leeuwarden</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Nieuwleusen" data-name="Bos Bedden Nieuwleusen" data-lat="52.5825" data-lng="6.2819">
+          <span class="badge">Nederland</span>
+          <h3>Bos Bedden Nieuwleusen</h3>
+          <p class="dealer-address">Den Hulst 33, 7711 GK Nieuwleusen</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Nijkerk" data-name="Beddenspecialist Frans Poorter" data-lat="52.22" data-lng="5.4861">
+          <span class="badge">Nederland</span>
+          <h3>Beddenspecialist Frans Poorter</h3>
+          <p class="dealer-address">Verlaat 6, 3861 AA Nijkerk</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Nijverdal" data-name="Bos Bedden Nijverdal B.V." data-lat="52.36" data-lng="6.4681">
+          <span class="badge">Nederland</span>
+          <h3>Bos Bedden Nijverdal B.V.</h3>
+          <p class="dealer-address">Albert Einsteinstraat 11, 7442 DK Nijverdal</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Noordwijk" data-name="Beddenspecialist Verkade" data-lat="52.2358" data-lng="4.4472">
+          <span class="badge">Nederland</span>
+          <h3>Beddenspecialist Verkade</h3>
+          <p class="dealer-address">van Limburg Stirumstraat 38, 2201 JP Noordwijk</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="NOORDWIJKERHOUT" data-name="Kelto Slaapkamercentrum" data-lat="52.2617" data-lng="4.4931">
+          <span class="badge">Nederland</span>
+          <h3>Kelto Slaapkamercentrum</h3>
+          <p class="dealer-address">Gieterij 30-36, 2211 XK NOORDWIJKERHOUT</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Oostburg" data-name="Meubelcentrum Verdegem B.V." data-lat="51.3258" data-lng="3.4875">
+          <span class="badge">Nederland</span>
+          <h3>Meubelcentrum Verdegem B.V.</h3>
+          <p class="dealer-address">Nieuwstraat 68, 4501 ND Oostburg</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Oosterhout NB" data-name="De Slaap Lekker Winkel" data-lat="51.645" data-lng="4.8597">
+          <span class="badge">Nederland</span>
+          <h3>De Slaap Lekker Winkel</h3>
+          <p class="dealer-address">Nieuwstraat 12, 4901 JH Oosterhout NB</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Oude Tonge" data-name="Fabert Woonhuis" data-lat="51.6917" data-lng="4.2139">
+          <span class="badge">Nederland</span>
+          <h3>Fabert Woonhuis</h3>
+          <p class="dealer-address">Stadionsweg 32 b, 3255 BL Oude Tonge</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Papendrecht" data-name="Buys Zit &amp; Slaapcomfort" data-lat="51.8319" data-lng="4.6889">
+          <span class="badge">Nederland</span>
+          <h3>Buys Zit &amp; Slaapcomfort</h3>
+          <p class="dealer-address">Brederodelaan 3, 3353 GG Papendrecht</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Rijswijk" data-name="Dekkers Slaapcomfort" data-lat="52.0363" data-lng="4.325">
+          <span class="badge">Nederland</span>
+          <h3>Dekkers Slaapcomfort</h3>
+          <p class="dealer-address">Kerklaan 22-26+36, 2282 CK Rijswijk</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Roosendaal" data-name="Kwakernaat Bedden (R)" data-lat="51.5308" data-lng="4.4653">
+          <span class="badge">Nederland</span>
+          <h3>Kwakernaat Bedden (R)</h3>
+          <p class="dealer-address">Nieuwe Markt 45, 4701 AC Roosendaal</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Rotterdam" data-name="Aquamonde Slaapspecialist" data-lat="52.0898" data-lng="4.8313">
+          <span class="badge">Nederland</span>
+          <h3>Aquamonde Slaapspecialist</h3>
+          <p class="dealer-address">Vlambloem 130, 3068 JE Rotterdam</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Rotterdam" data-name="Moon slaapadviseurs" data-lat="52.0898" data-lng="4.8313">
+          <span class="badge">Nederland</span>
+          <h3>Moon slaapadviseurs</h3>
+          <p class="dealer-address">Watermanweg 207, 3067GA Rotterdam</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Schijndel" data-name="De Beddenwinkel" data-lat="51.6225" data-lng="5.4319">
+          <span class="badge">Nederland</span>
+          <h3>De Beddenwinkel</h3>
+          <p class="dealer-address">Hoofdstraat 133, 5481 AD Schijndel</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Sleeuwijk" data-name="Van Schuppen" data-lat="51.8158" data-lng="4.9528">
+          <span class="badge">Nederland</span>
+          <h3>Van Schuppen</h3>
+          <p class="dealer-address">Het Zand 27, 4254 XP Sleeuwijk</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Sliedrecht" data-name="Hartog Wonen" data-lat="51.8208" data-lng="4.7764">
+          <span class="badge">Nederland</span>
+          <h3>Hartog Wonen</h3>
+          <p class="dealer-address">Leeghwaterstraat 71, 3364 AE Sliedrecht</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Urk" data-name="Mazereeuw Slaapcomfort" data-lat="52.6625" data-lng="5.6014">
+          <span class="badge">Nederland</span>
+          <h3>Mazereeuw Slaapcomfort</h3>
+          <p class="dealer-address">Westwal 5, 8321 WG Urk</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Utrecht" data-name="Nachtleven" data-lat="52.0907" data-lng="5.1214">
+          <span class="badge">Nederland</span>
+          <h3>Nachtleven</h3>
+          <p class="dealer-address">Voorstraat 9, 3512 AH Utrecht</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Veldhoven" data-name="House of Bedding" data-lat="51.4183" data-lng="5.4028">
+          <span class="badge">Nederland</span>
+          <h3>House of Bedding</h3>
+          <p class="dealer-address">Heuvelstraat 5, 5502 AA Veldhoven</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Vlaardingen" data-name="van Heusden Slaapcomfort" data-lat="51.4667" data-lng="4.3833">
+          <span class="badge">Nederland</span>
+          <h3>van Heusden Slaapcomfort</h3>
+          <p class="dealer-address">Gedempte Biersloot 35, 3131 HJ Vlaardingen</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Wateringen" data-name="Beddenspecialist De Jager Slapen BV" data-lat="52.0242" data-lng="4.2708">
+          <span class="badge">Nederland</span>
+          <h3>Beddenspecialist De Jager Slapen BV</h3>
+          <p class="dealer-address">Herenstraat 106, 2291 BK Wateringen</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Westkapelle" data-name="Minderhoud Wonen" data-lat="51.5292" data-lng="3.4403">
+          <span class="badge">Nederland</span>
+          <h3>Minderhoud Wonen</h3>
+          <p class="dealer-address">Zuidstraat 116, 4361 AJ Westkapelle</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Winterswijk" data-name="House of Beds" data-lat="51.9725" data-lng="6.7194">
+          <span class="badge">Nederland</span>
+          <h3>House of Beds</h3>
+          <p class="dealer-address">Roelvinkstraat 35, 7101 GN Winterswijk</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Wolphaartsdijk" data-name="Schuit en Zn" data-lat="51.5317" data-lng="3.8194">
+          <span class="badge">Nederland</span>
+          <h3>Schuit en Zn</h3>
+          <p class="dealer-address">Papeweg 74, 4471BH Wolphaartsdijk</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Wormerveer" data-name="Luyt Beddenadvies" data-lat="52.4908" data-lng="4.7903">
+          <span class="badge">Nederland</span>
+          <h3>Luyt Beddenadvies</h3>
+          <p class="dealer-address">Zaanweg 124, 1521 DS Wormerveer</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Zevenhuizen" data-name="Voorbrood" data-lat="52.0574" data-lng="4.5435">
+          <span class="badge">Nederland</span>
+          <h3>Voorbrood</h3>
+          <p class="dealer-address">Dorpsstraat 119, 2761 AN Zevenhuizen</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Zierikzee" data-name="Deurloo Interieurhuis" data-lat="51.65" data-lng="3.9194">
+          <span class="badge">Nederland</span>
+          <h3>Deurloo Interieurhuis</h3>
+          <p class="dealer-address">Havenplein 3, 4301 JD Zierikzee</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Zuidwolde" data-name="Beddenspecialist Dekker Slapen" data-lat="52.6162" data-lng="6.4653">
+          <span class="badge">Nederland</span>
+          <h3>Beddenspecialist Dekker Slapen</h3>
+          <p class="dealer-address">Steenbergerweg 2, 7921 GE Zuidwolde</p>
+        </article>
+
+        <article class="dealer-card" data-country="nl" data-city="Zutphen" data-name="Bedshop de Duif" data-lat="52.1383" data-lng="6.2014">
+          <span class="badge">Nederland</span>
+          <h3>Bedshop de Duif</h3>
+          <p class="dealer-address">Nieuwstad 44 - 48, 7201 Zutphen</p>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section section--slate">
+    <div class="container text-center">
+      <h2>Wil je Ultima-dealer worden?</h2>
+      <p class="lead mx-auto" style="text-align:center;">Ben je slaapspecialist en wil je Ultima aan je assortiment toevoegen? Neem contact met ons op.</p>
+      <a href="contact.html" class="btn btn--primary">Neem contact op</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo logo--footer" style="margin-bottom: var(--space-xs);"><img src="assets/ultima-logo.png" alt="Ultima — Het bed dat bij je past"></div>
+        <p style="max-width: 34ch; font-size: 0.9rem; color: rgba(243,236,225,0.65);">Premium boxsprings, matrassen, topmatrassen, gestoffeerde ledikanten en kussens. Verkrijgbaar bij geselecteerde dealers in Nederland, België en Duitsland.</p>
+      </div>
+      <div>
+        <h4>Merk</h4>
+        <ul>
+          <li><a href="over-ons.html">Over Ultima</a></li>
+          <li><a href="producten.html">Producten</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Producten</h4>
+        <ul>
+          <li><a href="boxsprings.html">Boxsprings</a></li>
+          <li><a href="matrassen.html">Matrassen</a></li>
+          <li><a href="topmatrassen.html">Topmatrassen</a></li>
+          <li><a href="ledikanten.html">Ledikanten</a></li>
+          <li><a href="kussens.html">Kussens</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kopen</h4>
+        <ul>
+          <li><a href="dealers.html">Vind een dealer</a></li>
+          <li><a href="contact.html">Word dealer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Ultima B.V. Alle rechten voorbehouden.</span>
+      <span>Placeholder-content — nog te vervangen door definitieve teksten en beeldmateriaal.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="vendor/leaflet/leaflet.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
