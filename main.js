@@ -11,6 +11,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* Horizontaal scrollbare kaartenrij: verticaal scrollen over de rij scrollt eerst
+     de rij zelf horizontaal door, en laat pas daarna de pagina verder naar beneden/boven gaan. */
+  document.querySelectorAll('.card-scroll-row').forEach((row) => {
+    row.addEventListener('wheel', (e) => {
+      // Alleen ingrijpen bij overwegend verticaal scrollen (muiswiel/trackpad);
+      // een bewuste horizontale sleepbeweging laten we ongemoeid.
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+
+      const maxScrollLeft = row.scrollWidth - row.clientWidth;
+      if (maxScrollLeft <= 0) return; // niets te scrollen (bv. op mobiel/smal scherm)
+
+      const nextScrollLeft = row.scrollLeft + e.deltaY;
+      const atStart = row.scrollLeft <= 0;
+      const atEnd = row.scrollLeft >= maxScrollLeft;
+
+      if ((e.deltaY > 0 && !atEnd) || (e.deltaY < 0 && !atStart)) {
+        e.preventDefault();
+        row.scrollLeft = Math.max(0, Math.min(maxScrollLeft, nextScrollLeft));
+      }
+      // Aan het begin/eind: preventDefault niet aanroepen, zodat de pagina gewoon verder scrollt.
+    }, { passive: false });
+  });
+
   /* Lichtbox: klik op een productfoto voor een grote weergave */
   const lightboxImages = document.querySelectorAll('.swatch--photo img, .swatch--cover img');
   if (lightboxImages.length) {
@@ -249,17 +272,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (location) {
           sortVisibleCardsByDistance(location.lat, location.lng);
           showCardsForCountry(country);
-          setSearchStatus('Geen dealer met een naam of plaats die overeenkomt met "' + query + '" — hieronder de dichtstbijzijnde dealers, gesorteerd op afstand.');
+          setSearchStatus('');
         } else {
           clearDistanceLabels();
           showCardsForCountry(country);
-          setSearchStatus('Geen dealers gevonden voor "' + query + '" — hier is het volledige overzicht.');
+          setSearchStatus('');
         }
       } catch (err) {
         if (requestId !== searchRequestId) return;
         clearDistanceLabels();
         showCardsForCountry(country);
-        setSearchStatus('Geen dealers gevonden voor "' + query + '" — hier is het volledige overzicht.');
+        setSearchStatus('');
       }
     }
 
