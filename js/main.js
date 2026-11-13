@@ -22,12 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const maxScrollLeft = row.scrollWidth - row.clientWidth;
       if (maxScrollLeft <= 0) return; // niets te scrollen (bv. op mobiel/smal scherm)
 
+      const nextScrollLeft = row.scrollLeft + e.deltaY;
       const atStart = row.scrollLeft <= 0;
-      const atEnd = row.scrollLeft >= maxScrollLeft - 1;
+      const atEnd = row.scrollLeft >= maxScrollLeft;
 
       if ((e.deltaY > 0 && !atEnd) || (e.deltaY < 0 && !atStart)) {
         e.preventDefault();
-        row.scrollLeft += e.deltaY;
+        row.scrollLeft = Math.max(0, Math.min(maxScrollLeft, nextScrollLeft));
       }
       // Aan het begin/eind: preventDefault niet aanroepen, zodat de pagina gewoon verder scrollt.
     }, { passive: false });

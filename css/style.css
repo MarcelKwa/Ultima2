@@ -338,14 +338,12 @@ p { margin: 0 0 var(--space-sm); }
   display: flex;
   gap: var(--space-md);
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
   padding-bottom: var(--space-sm);
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
 }
 .card-scroll-row .card {
   flex: 0 0 280px;
-  scroll-snap-align: start;
 }
 .card-scroll-row .swatch {
   aspect-ratio: 4 / 3.4;
