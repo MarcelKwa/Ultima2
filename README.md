@@ -49,4 +49,4 @@ Lokaal (bijvoorbeeld met `vercel dev`) werkt de function ook, mits dezelfde omge
 - Contactformulier vereist nog een eenmalige Resend-configuratie (zie hierboven) voordat berichten daadwerkelijk aankomen.
 - Sommige dealers missen nog een e-mailadres (niet in brondata).
 - Overige productdata kussens (afmetingen/hoogtes) nog aan te vullen.
-- De dealerzoeker gebruikt Nominatim (OpenStreetMap) voor het omzetten van een getypte plaatsnaam naar coördinaten wanneer er geen directe naam-/plaatsmatch is — een gratis publieke API, prima voor dit volume maar bij hoge bezoekersaantallen kan een eigen geocoding-dienst nodig zijn.
+- De dealerzoeker herkent plaatsnamen, Nederlandse postcodes en dealernamen lokaal en sorteert de lijst altijd op afstand (dichtstbij eerst). Alleen een onbekende zoekterm wordt na Enter/Zoeken opgezocht via Nominatim (OpenStreetMap), nooit tijdens het typen. Bij veel bezoekers kan een eigen geocoding-dienst nodig zijn.
